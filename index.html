@@ -7,11 +7,102 @@
     <title>Rock Paper Scissors Game</title>
 </head>
 <body>
+    <form action="code.js" method="GET">
+        <div>
+            <h1>Welcome to Rock Paper Scissors!</h1>
+        </div>
+        <div>
+            <h3>First, please enter your name:</h3> <input type="text" id="name" name="name">
+            <input type="button" value="Begin!" onclick="getName()">
+        </div>
+<br><br>
     <div>
-        <h1>Welcome to Rock Paper Scissors!</h1>
+        <div id="nameOut"></div>
+            <input type="radio" id="rock" name="selection" value="Rock">Rock
+            <input type="radio" id="paper" name="selection" value="Paper">Paper
+            <input type="radio" id="scissors" name="selection" value="Scissors">Scissors
+        <input type="button" value="Go!" onclick="runGame()">
     </div>
-    <div>
-        <h3>To begin, please enter your name:</h3>
+
+    <div>  
+        <ul>
+            <li id="output"></li>
+        </ul>
     </div>
+
+    </form>
+
+<script>
+    function getName() {
+        var name = document.getElementById("name").value;
+        document.getElementById("nameOut").innerHTML = name + ", please make a selection:";
+    };
+
+    function runGame() {
+
+        var count = 0;
+        count++;
+
+        var computerChoice = Math.random();
+        if (computerChoice < 0.34) {
+            computerChoice = "Rock";
+        } else if(computerChoice <= 0.67) {
+            computerChoice = "Paper";
+        } else {
+            computerChoice = "Scissors";
+        }
+
+        if (document.getElementById("rock").checked) {
+            userChoice = document.getElementById("rock").value;
+        };
+
+        if (document.getElementById("paper").checked) {
+            userChoice = document.getElementById("paper").value;
+        };
+
+        if (document.getElementById("scissors").checked) {
+            userChoice = document.getElementById("scissors").value;
+        };
+
+        var results = compare(userChoice,computerChoice);
+        document.getElementById("output").innerHTML = results;
+        
+        var compare = function(choice1,choice2) {
+            if (choice1 = choice2) {
+                return "Round " + count + ", Its a Tie! (" + name + ": " + choice1 + ", Computer: " + choice2 + ")";
+            }
+            if (choice1 = "rock") {
+                if (choice2 = "scissors") {
+                    // rock wins
+                    return "Round " + count + ", " + name + " wins! (" + name + ": " + choice1 + ", Computer: " + choice2 + ")";
+                } else {
+                    // paper wins
+                    return "Round " + count + ", Computer Wins! (" + name + ": " + choice1 + ", Computer: " + choice2 + ")";
+                }
+            }
+            if (choice1 = "paper") {
+                if (choice2 = "rock") {
+                    // paper wins
+                    return "Round " + count + ", " + name + " wins! (" + name + ": " + choice1 + ", Computer: " + choice2 + ")";
+                } else {
+                    // scissors wins
+                    return "Round " + count + ", Computer Wins! (" + name + ": " + choice1 + ", Computer: " + choice2 + ")";
+                }
+            }
+            if (choice1 = "scissors") {
+                if (choice2 = "rock") {
+                    // rock wins
+                    return "Round " + count + ", Computer Wins! (" + name + ": " + choice1 + ", Computer: " + choice2 + ")";
+                } else {
+                    // scissors wins
+                    return "Round " + count + ", " + name + " wins! (" + name + ": " + choice1 + ", Computer: " + choice2 + ")";
+                }
+            }
+        };
+
+    };
+
+    
+</script>
 </body>
 </html>
