@@ -10,7 +10,6 @@
     <title>Rock Paper Scissors Game</title>
 </head>
 <body>
-    <br><br><br><br>
     <form action="code.js" method="GET">
         <div>
             <h1>Welcome to Rock Paper Scissors!</h1>
@@ -47,7 +46,9 @@
     };
 
     var count = 0;
+    function runGame() {
 
+        count++;
 
     var computerChoice = Math.random();
         if (computerChoice < 0.34) {
@@ -63,11 +64,18 @@
 
         for(i=0;i<len;i++){
             if(value[i].checked){
-                var userChoice = value[i].value;
+                var choice = value[i].value;
             }
         }
 
-        var result = function whoWins(userChoice,computerChoice) {
+        var result = whoWins(computerChoice, choice);
+        
+
+        function whoWins(userChoice,computerChoice) {
+
+            var userChoice;
+            var computerChoice;
+
 
             var name = document.getElementById("name").value;
 
@@ -101,14 +109,12 @@
                     return "Round " + count + ": " + name + " wins! (" + name + ": " + userChoice + ", Computer: " + computerChoice + ")";
                 }
             };
+            
         };
-
-        var finalResult = result(userChoice,computerChoice)
-        
-    function runGame() {
-        document.getElementById("output").innerHTML = finalResult;
-        count++;
+        document.getElementById("output").innerHTML = result;
     };
+        
+
 
     
 </script>
